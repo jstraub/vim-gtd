@@ -164,7 +164,7 @@ endfunction
 
 function! GtdWriteSection(acts,contexts,section)
   silent mkview
-  execute "foldlevel=99"
+  execute "set foldlevel=99"
   " re-find the boundaries of that section to make sure we are deleting the
   " right thing
   let lnum = search ("# ".a:section,'wn') + 1
