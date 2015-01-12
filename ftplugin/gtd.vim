@@ -163,7 +163,8 @@ function! GtdParseSection(section)
 endfunction
 
 function! GtdWriteSection(acts,contexts,section)
-
+  call mkview
+  execute "zR"
   " re-find the boundaries of that section to make sure we are deleting the
   " right thing
   let lnum = search ("# ".a:section,'wn') + 1
@@ -188,6 +189,7 @@ function! GtdWriteSection(acts,contexts,section)
       endfor
     endfor
   endfor
+  silent loadview
 endfunction
 
 function! GtdSortSection(section)
