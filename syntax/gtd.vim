@@ -30,3 +30,5 @@ hi gtdSometime term=bold cterm=bold ctermfg=white guifg=yellow gui=bold
 hi gtdSectionHead ctermbg=236 guibg=#3a3a3a
 hi gtdContext cterm=bold ctermfg=68 gui=bold guifg=#5f87d7 ctermbg=236 guibg=#3a3a3a
 hi gtdAddInfo cterm=bold ctermfg=green gui=bold guifg=green
+
+hi inlineURL ctermfg=blue guifg=blue
