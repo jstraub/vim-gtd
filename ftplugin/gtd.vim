@@ -146,14 +146,11 @@ function! GtdParseSection(section)
         else 
           let acts[curCont] = [[getline(lnum)]]
         endif
-        if IndentLevel(lnum+1) > IndentLevel(lnum) 
-          let curLevel = IndentLevel(lnum) 
+        let curLevel = IndentLevel(lnum) 
+        while IndentLevel(lnum + 1) > curLevel
+          let acts[curCont][-1] = acts[curCont][-1] + [getline(lnum + 1)]
           let lnum = lnum + 1
-          while IndentLevel(lnum) > curLevel
-            let acts[curCont][-1] = acts[curCont][-1] + [getline(lnum)]
-            let lnum = lnum + 1
-          endwhile
-        endif
+        endwhile
       endif
       let lnum = lnum + 1
     endwhile
