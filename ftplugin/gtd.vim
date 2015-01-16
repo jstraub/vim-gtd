@@ -201,6 +201,7 @@ function! GtdRefreshSections()
   let dones = GtdParseSection("DONE")
   let contexts = sort(GtdParseContexts())
 
+  " move stuff from ACTIONS to other WAITING and DONE
   for context in contexts
     let contActs = deepcopy(acts[context])
     let acts[context] = [[]]
@@ -213,6 +214,40 @@ function! GtdRefreshSections()
         call add(waits[context], act)
       else
         call add(acts[context], act)
+      endif
+    endfor
+  endfor
+
+  " move stuff from WAITING to done DONE and ACTIONS
+  for context in contexts
+    let contWaits = deepcopy(waits[context])
+    let waits[context] = [[]]
+    for wait in contWaits
+      if match(wait[0],"^ *DONE") >= 0
+        echom "DONE: ".wait[0]
+        call add(dones[context], wait)
+      elseif match(wait[0],"^ *ACT") >= 0
+        echom "ACT:".wait[0]
+        call add(acts[context], wait)
+      else
+        call add(waits[context], wait)
+      endif
+    endfor
+  endfor
+
+  " move stuff from DONE to WAITING and ACTIONS
+  for context in contexts
+    let contDones = deepcopy(dones[context])
+    let dones[context] = [[]]
+    for done in contDones
+      if match(done[0],"^ *WAIT") >= 0
+        echom "WAIT: ".done[0]
+        call add(waits[context], done)
+      elseif match(done[0],"^ *ACT") >= 0
+        echom "ACT:".done[0]
+        call add(acts[context], done)
+      else
+        call add(dones[context], done)
       endif
     endfor
   endfor
