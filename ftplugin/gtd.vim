@@ -156,7 +156,6 @@ function! GtdParseSection(section)
     endwhile
   endif
   let acts['_lend'] = lnum - 1
-  echo acts
   return acts
 endfunction
 
@@ -206,12 +205,11 @@ function! GtdRefreshSections()
     let contActs = deepcopy(acts[context])
     let acts[context] = [[]]
     for act in contActs
-      echo act
       if match(act[0],"^ *DONE") >= 0
-        echom "DONE:"
+        echom "DONE: ".act[0]
         call add(dones[context], act)
       elseif match(act[0],"^ *WAIT") >= 0
-        echom "WAIT:"
+        echom "WAIT:".act[0]
         call add(waits[context], act)
       else
         call add(acts[context], act)
