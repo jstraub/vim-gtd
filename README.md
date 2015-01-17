@@ -1,8 +1,15 @@
 # Getting Things Done in vim
 vim-gtd provides all functionality to manage your life from a single .gtd file
 under the "Getting Things Done" paradigm of David Allen. 
-
 The syntax follows Markdown closely so that it becomes easy to convert the file to .html.
+
+vim-gtd will allow you to manage your life and projects from within vim. The
+plugin's functionality makes it easy to keep the gtd file clean and orderly.
+
+- advance your projects within your unique self-defined contexts
+- define your projects and contexts
+- keep track of actions, waitings and dones
+- easily change the status of tasks and re-sort them into their respective sections
 
 ## Getting Started
 Copy the gtd.gtd file and start filling in your own contexts first. After you
