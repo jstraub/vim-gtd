@@ -20,11 +20,16 @@ automatically be populated with them.
   ## home
   ## office
 ```
-Now you can start populating the file with your actions, waitings and dones! Dont forget to add the appropriate tags: ACT for actions, WAIT for waiting and DONE for done in front of the respective task description.
+Now you can start populating the file with your actions, waitings and dones!
+Dont forget to add the appropriate tags: ACT for actions, WAIT for waiting and
+DONE for done in front of the respective task description.  You can add
+additional information below each task.
 ```
 # ACTIONS
   ## home
     ACT repair lamp
+      - lamp is in the left drawer of the bedroom
+      - use the yellow LED lamp
   ## office
 # WAITING
   ## home
@@ -34,14 +39,6 @@ Now you can start populating the file with your actions, waitings and dones! Don
   ## home 
   ## office
     DONE get new mouse from IT
-```
-You can add additional information below each task:
-``` 
-# ACTIONS
-  ## home
-    ACT repair lamp
-      - lamp is in the left drawer of the bedroom
-      - use the yellow LED lamp
 ```
 
 ## Functionality
