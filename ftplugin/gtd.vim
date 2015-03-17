@@ -222,7 +222,7 @@ function! GtdRefreshSections()
       for item in out[sec][context]
         for key in keys
           if match(item[0],"^ *".key) >= 0
-            echom key.": ".act[0]
+            echom key.": ".item[0]
             call add(out[secKeys[key]][context], item)
             call remove(out[sec][context], item)
             "        elseif match(act[0],"^ *WAIT") >= 0
