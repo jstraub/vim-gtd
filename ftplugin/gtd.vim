@@ -201,6 +201,7 @@ function! GtdRefreshSections()
   let secs = ["ACTIONS","WAITING","DONE","SOMETIME"]
   let keys = ["ACT","WAIT","DONE" ,"ST"]
   let secKeys = {"ACTIONS": "ACT","WAITING": "WAIT", "DONE": "DONE" ,"SOMETIME": "ST"}
+  let keySec = {"ACT": "ACTIONS","WAIT": "WAITING", "DONE": "DONE" , "ST": "SOMETIME"}
   
   let parsed = {}
   for sec in secs
@@ -222,8 +223,8 @@ function! GtdRefreshSections()
       for item in parsed[sec][context]
         for key in keys
           if match(item[0],"^ *".key) >= 0
-            echom sec." -> ".secKeys[key].": ".item[0]
-            call add(out[secKeys[key]][context], deepcopy(item))
+            echom sec." -> ".keySec[key].": ".item[0]
+            call add(out[keySec[key]][context], deepcopy(item))
             "call remove(out[sec][context], item)
             "        elseif match(act[0],"^ *WAIT") >= 0
             "          echom "WAIT:".act[0]
