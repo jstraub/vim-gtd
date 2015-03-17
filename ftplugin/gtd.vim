@@ -203,117 +203,41 @@ function! GtdRefreshSections()
   let secKeys = {"ACTIONS": "ACT","WAITING": "WAIT", "DONE": "DONE" ,"SOMETIME": "ST"}
   let keySec = {"ACT": "ACTIONS","WAIT": "WAITING", "DONE": "DONE" , "ST": "SOMETIME"}
   
+  " parse sections
   let parsed = {}
   for sec in secs
     let parsed[sec] = GtdParseSection(sec)
   endfor
-"  let acts = GtdParseSection("ACTIONS")
-"  let waits = GtdParseSection("WAITING")
-"  let dones = GtdParseSection("DONE")
-"  let sts = GtdParseSection("SOMETIME")
+  " parse contexts
   let contexts = sort(GtdParseContexts())
 
-  " move stuff from ACTIONS to other WAITING and DONE
-  let out = {} "deepcopy(parsed)
+  " init output structure with sections and contexts
+  let out = {}
   for sec in secs
     let out[sec] = {}
+    for context in contexts
+      let out[sec][context] = [[]]
+    endfor
   endfor
+
+  " move items in section contexts around according to section keys
   for sec in secs
     for context in contexts
-      "      let contParsed = deepcopy(parsed[sec][context])
-      let out[sec][context] = [[]]
       for item in parsed[sec][context]
         for key in keys
           if match(item[0],"^ *".key) >= 0
             echom sec." -> ".keySec[key].": ".item[0]
             call add(out[keySec[key]][context], deepcopy(item))
-            "call remove(out[sec][context], item)
-            "        elseif match(act[0],"^ *WAIT") >= 0
-            "          echom "WAIT:".act[0]
-            "          call add(waits[context], act)
-            "        else
-            "          call add(acts[context], act)
           endif
         endfor
       endfor
     endfor
   endfor
 
-"  " move stuff from ACTIONS to other WAITING and DONE
-"  for context in contexts
-"    let contActs = deepcopy(acts[context])
-"    let acts[context] = [[]]
-"    for act in contActs
-"      if match(act[0],"^ *DONE") >= 0
-"        echom "DONE: ".act[0]
-"        call add(dones[context], act)
-"      elseif match(act[0],"^ *WAIT") >= 0
-"        echom "WAIT:".act[0]
-"        call add(waits[context], act)
-"      else
-"        call add(acts[context], act)
-"      endif
-"    endfor
-"  endfor
-"
-"  " move stuff from WAITING to done DONE and ACTIONS
-"  for context in contexts
-"    let contWaits = deepcopy(waits[context])
-"    let waits[context] = [[]]
-"    for wait in contWaits
-"      if match(wait[0],"^ *DONE") >= 0
-"        echom "DONE: ".wait[0]
-"        call add(dones[context], wait)
-"      elseif match(wait[0],"^ *ACT") >= 0
-"        echom "ACT:".wait[0]
-"        call add(acts[context], wait)
-"      else
-"        call add(waits[context], wait)
-"      endif
-"    endfor
-"  endfor
-"
-"  " move stuff from DONE to WAITING and ACTIONS
-"  for context in contexts
-"    let contDones = deepcopy(dones[context])
-"    let dones[context] = [[]]
-"    for done in contDones
-"      if match(done[0],"^ *WAIT") >= 0
-"        echom "WAIT: ".done[0]
-"        call add(waits[context], done)
-"      elseif match(done[0],"^ *ACT") >= 0
-"        echom "ACT:".done[0]
-"        call add(acts[context], done)
-"      else
-"        call add(dones[context], done)
-"      endif
-"    endfor
-"  endfor
-"
-"  " move stuff from SOMETIME to WAITING and ACTIONS
-"  for context in contexts
-"    let contDones = deepcopy(dones[context])
-"    let dones[context] = [[]]
-"    for done in contDones
-"      if match(done[0],"^ *WAIT") >= 0
-"        echom "WAIT: ".done[0]
-"        call add(waits[context], done)
-"      elseif match(done[0],"^ *ACT") >= 0
-"        echom "ACT:".done[0]
-"        call add(acts[context], done)
-"      else
-"        call add(dones[context], done)
-"      endif
-"    endfor
-"  endfor
-
+  " output sections
   for sec in secs:
     call GtdWriteSection(out[sec],contexts,sec)
   endfor
-"  call GtdWriteSection(acts,contexts,"SOMETIME")
-"  call GtdWriteSection(acts,contexts,"ACTIONS")
-"  call GtdWriteSection(waits,contexts,"WAITING")
-"  call GtdWriteSection(dones,contexts,"DONE")
 
 endfunction
 
