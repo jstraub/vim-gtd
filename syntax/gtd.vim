@@ -14,6 +14,7 @@ syn keyword gtdDone DONE
 syn keyword gtdAct ACT
 syn keyword gtdWait WAIT
 syn keyword gtdSometime SOMETIME
+syn keyword gtdSometime ST
 
 syn match gtdSectionHead   '^# \u\+'
 syn match gtdContext       '^ \+## [0-9a-zA-Z :]\+'
