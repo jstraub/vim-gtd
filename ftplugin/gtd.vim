@@ -235,7 +235,7 @@ function! GtdRefreshSections()
   endfor
 
   " output sections
-  for sec in secs:
+  for sec in secs
     call GtdWriteSection(out[sec],contexts,sec)
   endfor
 
