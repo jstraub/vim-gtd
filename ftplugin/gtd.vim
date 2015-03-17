@@ -217,6 +217,8 @@ function! GtdRefreshSections()
   let out = {} "deepcopy(parsed)
   for sec in secs
     let out[sec] = {}
+  endfor
+  for sec in secs
     for context in contexts
       "      let contParsed = deepcopy(parsed[sec][context])
       let out[sec][context] = [[]]
