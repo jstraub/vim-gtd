@@ -213,18 +213,18 @@ function! GtdRefreshSections()
   let contexts = sort(GtdParseContexts())
 
   " move stuff from ACTIONS to other WAITING and DONE
-  let out = deepcopy(parsed)
+"  let out = deepcopy(parsed)
   for sec in secs
-    "    let out[sec] = {}
+    let out[sec] = {}
     for context in contexts
       "      let contParsed = deepcopy(parsed[sec][context])
-      "      let out[sec][context] = [[]]
-      for item in out[sec][context]
+      let out[sec][context] = [[]]
+      for item in parsed[sec][context]
         for key in keys
           if match(item[0],"^ *".key) >= 0
-            echom key.": ".item[0]
-            call add(out[secKeys[key]][context], item)
-            call remove(out[sec][context], item)
+            echom sec." -> ".secKeys[key].": ".item[0]
+            call add(out[secKeys[key]][context], deepcopy(item))
+            "call remove(out[sec][context], item)
             "        elseif match(act[0],"^ *WAIT") >= 0
             "          echom "WAIT:".act[0]
             "          call add(waits[context], act)
