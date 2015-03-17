@@ -203,7 +203,7 @@ function! GtdRefreshSections()
   let secKeys = {"ACTIONS": "ACT","WAITING": "WAIT", "DONE": "DONE" ,"SOMETIME": "ST"}
   
   let parsed = {}
-  for sec in secs:
+  for sec in secs
     let parsed[sec] = GtdParseSection(sec)
   endfor
 "  let acts = GtdParseSection("ACTIONS")
@@ -213,8 +213,8 @@ function! GtdRefreshSections()
   let contexts = sort(GtdParseContexts())
 
   " move stuff from ACTIONS to other WAITING and DONE
-  out = deepcopy(parsed)
-  for sec in secs:
+  let out = deepcopy(parsed)
+  for sec in secs
     "    let out[sec] = {}
     for context in contexts
       "      let contParsed = deepcopy(parsed[sec][context])
