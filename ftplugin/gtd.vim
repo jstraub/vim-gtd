@@ -213,7 +213,7 @@ function! GtdRefreshSections()
   let contexts = sort(GtdParseContexts())
 
   " move stuff from ACTIONS to other WAITING and DONE
-"  let out = deepcopy(parsed)
+  let out = {} "deepcopy(parsed)
   for sec in secs
     let out[sec] = {}
     for context in contexts
