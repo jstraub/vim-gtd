@@ -226,8 +226,10 @@ function! GtdRefreshSections()
       for item in parsed[sec][context]
         for key in keys
           if match(item[0],"^ *".key) >= 0
-            echom sec." -> ".keySec[key].": ".item[0]
             call add(out[keySec[key]][context], deepcopy(item))
+            if sec == keySec[key]
+              echom sec." -> ".keySec[key].": ".item[0]
+            endif
           endif
         endfor
       endfor
