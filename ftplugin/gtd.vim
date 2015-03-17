@@ -227,7 +227,7 @@ function! GtdRefreshSections()
         for key in keys
           if match(item[0],"^ *".key) >= 0
             call add(out[keySec[key]][context], deepcopy(item))
-            if sec == keySec[key]
+            if sec != keySec[key]
               echom sec." -> ".keySec[key].": ".item[0]
             endif
           endif
