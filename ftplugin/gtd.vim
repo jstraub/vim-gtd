@@ -205,6 +205,7 @@ function! GtdRefreshSections()
   let parsed = {}
   for sec in secs:
     let parsed[sec] = GtdParseSection(sec)
+  endfor
 "  let acts = GtdParseSection("ACTIONS")
 "  let waits = GtdParseSection("WAITING")
 "  let dones = GtdParseSection("DONE")
