@@ -269,7 +269,7 @@ function! Filtered(fn, l)
 endfunction
 
 " ==============================================================
-nmap <silent>  st  :.s/\( *\)[DWA]\u+/\1ST/<CR>
+nmap <silent>  st  :.s/\( *\)[DWA]\u\+/\1ST/<CR>
 nmap <silent>  ''  :call GtdToggleActWait()<CR>
 nmap <silent>  'e  :call GtdEmailActWait()<CR>
 nmap <silent>  's  :call GtdSortProjects()<CR>
