@@ -200,12 +200,11 @@ function! GtdRefreshSections()
   " sections
   let secs = ["ACTIONS","WAITING","DONE","SOMETIME"]
   let keys = ["ACT","WAIT","DONE" ,"ST"]
-  let secKeys = ["ACTIONS": "ACT","WAITING": "WAIT", "DONE": "DONE" ,"SOMETIME": "ST"]
+  let secKeys = {"ACTIONS": "ACT","WAITING": "WAIT", "DONE": "DONE" ,"SOMETIME": "ST"}
   
   let parsed = {}
   for sec in secs:
     let parsed[sec] = GtdParseSection(sec)
-
 "  let acts = GtdParseSection("ACTIONS")
 "  let waits = GtdParseSection("WAITING")
 "  let dones = GtdParseSection("DONE")
