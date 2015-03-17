@@ -269,6 +269,7 @@ function! Filtered(fn, l)
 endfunction
 
 " ==============================================================
+nmap <silent>  st  :.s/DONE/ACT/<CR>
 nmap <silent>  ''  :call GtdToggleActWait()<CR>
 nmap <silent>  'e  :call GtdEmailActWait()<CR>
 nmap <silent>  's  :call GtdSortProjects()<CR>
