@@ -8,6 +8,7 @@ let g:loaded_gtd = 000 " your version number
 let s:keepcpo    = &cpo
 set cpo&vim
 set foldcolumn=5
+set formatoptions-=t
 set nospell
 
 "autocmd BufWritePre *.gtd :call GtdSortProjects()
